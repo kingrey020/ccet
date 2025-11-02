@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CCET - Blinking Neon Display</title>
+  <title>CCET - Synchronized Blinking (Fullscreen)</title>
   <style>
     html, body {
       margin: 0;
@@ -15,51 +15,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Arial Black', Gadget, sans-serif;
-      font-size: 4rem;
-      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 4rem; /* Responsive text size */
+      font-weight: bold;
       color: white;
-      -webkit-text-stroke: 2px rgba(255,255,255,0.8);
-      text-shadow:
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 20px #ffbf00,
-        0 0 30px #ff9100,
-        0 0 40px #ff7800,
-        0 0 70px #ff5100,
-        0 0 80px #ff3800,
-        0 0 100px #ff1f00;
-      animation: neonGlow 0.10s ease-in-out infinite alternate;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       flex-direction: column;
-    }
-
-    @keyframes neonGlow {
-      from {
-        text-shadow:
-          0 0 5px #fff,
-          0 0 10px #fff,
-          0 0 20px #ffbf00,
-          0 0 30px #ff9100,
-          0 0 40px #ff7800,
-          0 0 70px #ff5100;
-      }
-      to {
-        text-shadow:
-          0 0 10px #fff,
-          0 0 20px #fff,
-          0 0 30px #ffbf00,
-          0 0 40px #ff9100,
-          0 0 50px #ff7800,
-          0 0 80px #ff5100,
-          0 0 90px #ff3800,
-          0 0 120px #ff1f00;
-      }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      text-shadow: 2px 2px 0 #000, 4px 4px 0 #555;
+      
     }
 
     button {
@@ -73,11 +37,16 @@
       color: #FFA500;
       font-weight: bold;
       cursor: pointer;
-      z-index: 10;
+      visibility: visible;
     }
 
     button:active {
       opacity: 0.8;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
     }
   </style>
 </head>
@@ -95,7 +64,8 @@
       } else if (elem.msRequestFullscreen) { /* IE11 */
         elem.msRequestFullscreen();
       }
-      document.querySelector("button").style.display = "none";
+      // Hide the button after fullscreen is activated
+      document.querySelector("button").style.visibility = "hidden";
     }
   </script>
 </body>
